@@ -8,9 +8,10 @@ interface AuthProps {
     email: string, 
     password: string
   }) => Promise<void>;
+  children: React.ReactNode;
 }
 
-const Auth = ({submitLabel, onSubmit}: AuthProps) => {
+const Auth = ({submitLabel, onSubmit, children}: AuthProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   
@@ -21,6 +22,7 @@ const Auth = ({submitLabel, onSubmit}: AuthProps) => {
       <Button variant="contained" onClick={() => onSubmit({ email, password })}>
         {submitLabel}
       </Button>
+      {children}
     </Stack>
   )
 };

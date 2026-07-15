@@ -1,10 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
-import Auth from './components/auth/Auth';
-import { Button, Stack, Container, CssBaseline } from '@mui/material';
+import { Container, CssBaseline } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import router from './components/Routes';
 import { RouterProvider } from 'react-router-dom';
+import { ApolloProvider } from '@apollo/client/react'
+import client from './constants/apollo-client';
+
 
 const  darkTheme = createTheme({
   palette: {
@@ -15,12 +16,14 @@ const  darkTheme = createTheme({
 
 const App = () => {
   return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline/>
-      <Container>
-        <RouterProvider router={router}/>
-      </Container>
-    </ThemeProvider>
+      <ApolloProvider client={client}>
+          <ThemeProvider theme={darkTheme}>
+              <CssBaseline/>
+              <Container>
+                  <RouterProvider router={router}/>
+              </Container>
+          </ThemeProvider>
+      </ApolloProvider>
   )
 }
 
